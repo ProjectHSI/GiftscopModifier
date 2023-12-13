@@ -44,7 +44,7 @@ namespace GiftscopModifier.Core.Abstractions.SaveData.File.SubData.Types.Locatio
 		UndergroundQuitterBuildingHallway = 0x18,
 		// Missing entry 0x19
 		UndergroundQuitterRoom = 0x1A,
-		// Missing entry 0x1B
+		UndergroundQuitterNewMakerPlaneExit = 0x1B,
 		UndergroundGGAA = 0x1C,
 		UndergroundChildLibrary = 0x1D,
 		UndergroundChildLibraryRoom = 0x1E,
