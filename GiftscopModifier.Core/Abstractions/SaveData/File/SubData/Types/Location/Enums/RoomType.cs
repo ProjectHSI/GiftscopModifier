@@ -24,6 +24,7 @@ namespace GiftscopModifier.Core.Abstractions.SaveData.File.SubData.Types.Locatio
 		EvenCarePen = 0x07,
 		EvenCareCorner = 0x08,
 		EvenCareRainyRandice = 0x09,
+		EvenCareNewMakerPlaneEntrance = 0x0A, // Only present in Odd Care.
 
 		// Newmaker Plane
 		NewMakerPlane = 0x0B,
