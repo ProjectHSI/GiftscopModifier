@@ -48,5 +48,7 @@ namespace GiftscopModifier.Core.Abstractions.SaveData.File.SubData.Types.Locatio
 		UndergroundGGAA = 0x1C,
 		UndergroundChildLibrary = 0x1D,
 		UndergroundChildLibraryRoom = 0x1E,
+		UndergroundPartyRoom = 0x1F,
+		UndergroundGiftBoxRoom = 0x20,
 	}
 }
