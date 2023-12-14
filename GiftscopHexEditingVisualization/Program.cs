@@ -13,7 +13,10 @@ namespace GiftscopHexEditingVisualization
 		YPosition,
 		ZPosition,
 		NameLength,
-		Name
+		Name,
+		Generation,
+		VersionLength,
+		Version
 	}
 
 	internal class TerminalTrueColor
@@ -256,6 +259,21 @@ namespace GiftscopHexEditingVisualization
 				Color.FromArgb(0, 0, 0),
 				ConsoleColor.White,
 				ConsoleColor.Black) },
+
+			{ DataType.Generation, new(Color.FromArgb(255, 255, 255),
+				Color.FromArgb(127, ( int ) (127 * 0.5), ( int ) (127 * 0.5)),
+				ConsoleColor.Black,
+				ConsoleColor.Gray) },
+
+			{ DataType.VersionLength, new(Color.FromArgb(0, 0, 0),
+				Color.FromArgb(127, 127, ( int ) (127 * 0.5)),
+				ConsoleColor.Black,
+				ConsoleColor.Gray) },
+
+			{ DataType.Version, new(Color.FromArgb(255, 255, ( int ) (255 * 0.5)),
+				Color.FromArgb(0, 0, 0),
+				ConsoleColor.White,
+				ConsoleColor.Black) },
 		};
 
 		internal static Dictionary<DataType, string> DataTypeNames = new()
@@ -267,7 +285,10 @@ namespace GiftscopHexEditingVisualization
 			{ DataType.ZPosition, "Z Position" },
 			{ DataType.YPosition, "Y Position" },
 			{ DataType.NameLength, "Save File Name Length" },
-			{ DataType.Name, "Save File Name" }
+			{ DataType.Name, "Save File Name" },
+			{ DataType.Generation, "Generation" },
+			{ DataType.VersionLength, "Version Length" },
+			{ DataType.Version, "Version" }
 		};
 
 		internal static List<VisualizationSection> visualizationSections = [
@@ -281,9 +302,10 @@ namespace GiftscopHexEditingVisualization
 			new([0x04], visColors[DataType.NameLength]),
 			new([0x54, 0x65, 0x73, 0x74], visColors[DataType.Name]),
 			new([0x12], visColors[DataType.SubDataHeader]),
-			new([0x38], visColors[DataType.Unknown]),
+			new([0x38], visColors[DataType.Generation]),
 			new([0x1F], visColors[DataType.SubDataHeader]),
-			new([0x09, 0x31, 0x2E, 0x32, 0x2D, 0x70, 0x72, 0x65, 0x33, 0x30], visColors[DataType.Unknown]),
+			new([0x09], visColors[DataType.VersionLength]),
+			new([0x31, 0x2E, 0x32, 0x2D, 0x70, 0x72, 0x65, 0x33, 0x30], visColors[DataType.Version]),
 		];
 
 		internal static CombinedVisualizationColor offsetCounter = new(Color.FromArgb(0, 255, 255),
