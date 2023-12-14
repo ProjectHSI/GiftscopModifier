@@ -52,7 +52,7 @@ namespace GiftscopModifier.Core.Abstractions.SaveData.File.SubData.Types.Locatio
 		UndergroundPartyRoom = 0x1F,
 		UndergroundGiftBoxRoom = 0x20,
 
-		// Missing entries 0x21-0x27
+		// Missing entries 0x21-0x26
 
 		// School
 		SchoolFloor1 = 0x27,
