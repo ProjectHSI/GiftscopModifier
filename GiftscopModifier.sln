@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GiftscopModifier.Console", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GiftscopModifier.WPF", "GiftscopModifier.WPF\GiftscopModifier.WPF.csproj", "{56BE7659-EB60-4AB0-BE95-B6EE093A3C9F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiftscopModifier.Core.Tests", "GiftscopModifier.Core.Tests\GiftscopModifier.Core.Tests.csproj", "{2C801E92-DF76-4447-A08E-1CE693447FDC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GiftscopModifier.Core.Tests", "GiftscopModifier.Core.Tests\GiftscopModifier.Core.Tests.csproj", "{2C801E92-DF76-4447-A08E-1CE693447FDC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiftscopHexEditingVisualization", "GiftscopHexEditingVisualization\GiftscopHexEditingVisualization.csproj", "{B1EFCC05-457D-4E62-8376-BB615E0EC617}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{2C801E92-DF76-4447-A08E-1CE693447FDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C801E92-DF76-4447-A08E-1CE693447FDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2C801E92-DF76-4447-A08E-1CE693447FDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1EFCC05-457D-4E62-8376-BB615E0EC617}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1EFCC05-457D-4E62-8376-BB615E0EC617}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1EFCC05-457D-4E62-8376-BB615E0EC617}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1EFCC05-457D-4E62-8376-BB615E0EC617}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
