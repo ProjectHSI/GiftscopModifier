@@ -14,10 +14,10 @@ namespace GiftscopModifier.Core.Abstractions.SaveData.File.SubData.Types.Locatio
 		PseudoLevel2 = 0x01,
 
 		// GiftPlane
-        GiftPlane = 0x02,
+		GiftPlane = 0x02,
 
 		// Even Care
-        EvenCareLobby = 0x03,
+		EvenCareLobby = 0x03,
 		EvenCareHallway = 0x04,
 		EvenCareAmber = 0x05,
 		EvenCareRoneth = 0x06,
