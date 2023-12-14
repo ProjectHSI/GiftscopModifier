@@ -43,7 +43,7 @@ namespace GiftscopModifier.Core.Abstractions.SaveData.File.SubData.Types.Locatio
 		UndergroundTool = 0x16,
 		UndergroundQuitterHallway = 0x17,
 		UndergroundQuitterBuildingHallway = 0x18,
-		// Missing entry 0x19
+		UndergroundQuitterLeftRoom = 0x19,
 		UndergroundQuitterRightRoom = 0x1A,
 		UndergroundQuitterNewMakerPlaneExit = 0x1B,
 		UndergroundGGAA = 0x1C,
@@ -52,12 +52,32 @@ namespace GiftscopModifier.Core.Abstractions.SaveData.File.SubData.Types.Locatio
 		UndergroundPartyRoom = 0x1F,
 		UndergroundGiftBoxRoom = 0x20,
 
-		// Missing entries 0x21-0x26
+		// Entries 0x21-0x26 cause the save file to appear as an empty file and thus are not included.
 
 		// School
 		SchoolFloor1 = 0x27,
-		// Missing entry 0x28
-		SchoolFloor2 = 0x29
-		// Missing entries 0x2A-0x2B
+		SchoolNeedlesPiano = 0x28,
+		SchoolFloor2 = 0x29,
+		SchoolSmallClassroom = 0x2A,
+		SchoolFloor3 = 0x2B,
+		SchoolGhostRooms = 0x2C,
+
+		// School Basement
+		SchoolBasementEntrance = 0x2D,
+		SchoolBasementGifts = 0x2E,
+		SchoolBasementMachine = 0x2F,
+
+		// Inaccessible
+		SortTest = 0x30,
+
+		// Marvin's Recording Rooms
+		RoadMap = 0x31,
+		CasketsRoom = 0x32,
+
+		// Inaccessible
+		WorkZone = 0x33,
+
+		// Soundtrack Easter Egg
+		SoundtrackEasterEgg = 0x34,
 	}
 }
