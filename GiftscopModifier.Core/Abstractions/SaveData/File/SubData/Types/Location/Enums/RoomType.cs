@@ -56,5 +56,6 @@ namespace GiftscopModifier.Core.Abstractions.SaveData.File.SubData.Types.Locatio
 
 		// School
 		SchoolFloor1 = 0x27,
+		SchoolFloor2 = 0x29
 	}
 }
