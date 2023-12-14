@@ -51,5 +51,6 @@ namespace GiftscopModifier.Core.Abstractions.SaveData.File.SubData.Types.Locatio
 		UndergroundChildLibraryRoom = 0x1E,
 		UndergroundPartyRoom = 0x1F,
 		UndergroundGiftBoxRoom = 0x20,
+		// Missing entries 0x21-0x27
 	}
 }
