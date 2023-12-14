@@ -56,6 +56,8 @@ namespace GiftscopModifier.Core.Abstractions.SaveData.File.SubData.Types.Locatio
 
 		// School
 		SchoolFloor1 = 0x27,
+		// Missing entry 0x28
 		SchoolFloor2 = 0x29
+		// Missing entries 0x2A-0x2B
 	}
 }
