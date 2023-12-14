@@ -8,11 +8,6 @@ namespace GiftscopModifier.Core.Abstractions.SaveData.File.SubData.Types.Locatio
 {
     public enum RoomType
     {
-		// Pseudolevels
-		// These ones exist in the game (day garage loading screen) but cause the game to go back to the title screen.
-		PseudoLevel1 = 0x00,
-		PseudoLevel2 = 0x01,
-
 		// GiftPlane
 		GiftPlane = 0x02,
 
