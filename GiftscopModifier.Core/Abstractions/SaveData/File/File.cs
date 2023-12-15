@@ -44,8 +44,9 @@ namespace GiftscopModifier.Core.Abstractions.SaveData.File
 
 				case SubDataType.Position:
 					SubData[SubDataTypeEnum] = new Position();
-					SubData[SubDataTypeEnum].BuildSubData(ref CurrentDataBytes);
 					break;
+					break;
+
 				case SubDataType.Version:
 					SubData[SubDataTypeEnum] = new Version();
 					break;
