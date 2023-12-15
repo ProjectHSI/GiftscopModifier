@@ -7,8 +7,8 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="1080" Width="1920">
 	<Grid>
-		<ProgressBar x:Name="FileInteractionProgressBar" HorizontalAlignment="Center" Height="10" Margin="0,1044,0,0" VerticalAlignment="Top" Width="1900" Maximum="2"/>
-		<ComboBox x:Name="FileSelection" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Width="1900" DropDownOpened="FileSelection_Open">
+		<ProgressBar x:Name="FileInteractionProgressBar" HorizontalAlignment="Center" Height="10" Margin="10,1044,0,0" VerticalAlignment="Top" Width="1900"/>
+		<ComboBox x:Name="FileSelection" HorizontalAlignment="Left" Margin="15,10,0,0" VerticalAlignment="Top" Width="1895" DropDownOpened="FileSelection_Open">
 
 		</ComboBox>
 	</Grid>
