@@ -9,5 +9,6 @@ namespace GiftscopModifier.Core.Abstractions.SaveData.File.SubData.Enums {
 	{
 		ROOM = 0x00,
 		POSITION = 0x01,
+		VERSION = 0x1F,
 	}
 }
