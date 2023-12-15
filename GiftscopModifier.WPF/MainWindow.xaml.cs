@@ -70,6 +70,8 @@ namespace GiftscopModifier.WPF
 					ComboBoxItem comboBoxItem = new ComboBoxItem();
 					comboBoxItem.Content = "Recording - " + recording;
 
+					comboBoxItem.IsEnabled = false;
+
 					FileSelection.Items.Add(comboBoxItem);
 				}
             }
