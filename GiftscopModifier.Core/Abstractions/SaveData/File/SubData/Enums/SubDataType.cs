@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 namespace GiftscopModifier.Core.Abstractions.SaveData.File.SubData.Enums {
 	internal enum SubDataType
 	{
-		ROOM = 0x00,
+		Room = 0x00,
 		Position = 0x01,
-		VERSION = 0x1F,
+		SaveName = 0x07,
+		Generation = 0x12,
 		Version = 0x1F,
 	}
 }
