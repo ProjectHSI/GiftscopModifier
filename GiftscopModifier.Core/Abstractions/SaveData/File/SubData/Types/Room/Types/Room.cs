@@ -4,18 +4,16 @@ using GiftscopModifier.Core.Abstractions.SaveData.File.SubData.Types.Location.En
 
 namespace GiftscopModifier.Core.Abstractions.SaveData.File.SubData.Types.Location.Types
 {
-	internal record Room : ISubData
+	internal class Room : Interfaces.ISubData
 	{
 		internal static SubDataType SubDataType = SubDataType.ROOM;
 
-		public Room(RoomType roomType)
-		{
-			RoomType = roomType;
-		}
+		public Room()
+		{}
 
-		public RoomType RoomType { get; }
+		public RoomType RoomType { get; set; }
 
-		static ISubData ISubData.BuildSubData(List<byte> bytes)
+		void Interfaces.ISubData.BuildSubData(ref List<byte> bytes)
 		{
 			// Check the data type.
 			if (bytes[0] != (( byte ) SubDataType))
@@ -26,11 +24,10 @@ namespace GiftscopModifier.Core.Abstractions.SaveData.File.SubData.Types.Locatio
 			bytes.RemoveAt(0);
 
 			// Object initalization code.
-			return new Room((RoomType) bytes.TakeAndRemove(1)[0]);
-
+			RoomType = (RoomType) bytes.TakeAndRemove(1)[0];
 		}
 
-		List<byte> ISubData.BuildBytes()
+		List<byte> Interfaces.ISubData.BuildBytes()
 		{
 			List<byte> bytes = [];
 

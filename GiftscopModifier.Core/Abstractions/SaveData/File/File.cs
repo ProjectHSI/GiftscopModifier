@@ -1,7 +1,13 @@
-﻿using GiftscopModifier.Core.Enums;
+﻿using GiftscopModifier.Core.Abstractions.SaveData.File.SubData.Enums;
+using GiftscopModifier.Core.Abstractions.SaveData.File.SubData.Interfaces;
+using GiftscopModifier.Core.Abstractions.SaveData.File.SubData.Types.Location.Types;
+using GiftscopModifier.Core.Abstractions.SaveData.File.SubData.Types.Position.Types;
+using GiftscopModifier.Core.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
@@ -10,79 +16,64 @@ namespace GiftscopModifier.Core.Abstractions.SaveData.File
 {
     internal class File : IBaseDataInterface
     {
-        public RoomType? roomType;
-        public float? x;
-        public float? z;
-        public float? y;
-        public string? name;
-        public ushort? pieces;
+		private Dictionary<SubDataType, SubData.Interfaces.ISubData> SubData = [];
 
-        void IBaseDataInterface.fillInData(byte[] data)
+		private void BuildSubDataForSubDataType(byte SubDataTypeByte, ref List<byte> CurrentDataBytes)
+		{
+			SubDataType SubDataTypeEnum = (SubDataType) SubDataTypeByte;
+
+			if (!Enum.IsDefined(typeof(SubDataType), SubDataTypeEnum))
+			{
+				Console.WriteLine($"Unknown SubDataType: 0x{SubDataTypeByte:X2}. Please implement this SubDataType, as this data will be discardded upon filling in information.");
+
+				CurrentDataBytes.RemoveAt(0);
+
+				return;
+			}
+
+			switch (SubDataTypeEnum)
+			{
+				case SubDataType.ROOM:
+					SubData[SubDataTypeEnum] = new Room();
+					SubData[SubDataTypeEnum].BuildSubData(ref CurrentDataBytes);
+					break;
+
+				case SubDataType.POSITION:
+					SubData[SubDataTypeEnum] = new Position();
+					SubData[SubDataTypeEnum].BuildSubData(ref CurrentDataBytes);
+					break;
+			}
+		}
+
+		public File()
+		{}
+
+		void IBaseDataInterface.fillInData(List<byte> Data)
         {
-            throw new NotImplementedException();
+			if (Data.Count == 0)
+			{
+				return;
+			}
+
+			while (Data.Count != 0)
+			{
+				BuildSubDataForSubDataType(Data.First(), ref Data);
+			}
         }
 
         List<byte> IBaseDataInterface.rebuildData()
         {
-            if (roomType == null)
+			List<byte> Data = new();
+
+            foreach (ISubData SubData in SubData.Values)
             {
-                throw new InvalidOperationException("Required property is null (roomType).");
-            }
-            else if (x == null)
-            {
-                throw new InvalidOperationException("Required property is null (x).");
-            }
-            else if (y == null)
-            {
-                throw new InvalidOperationException("Required property is null (y).");
-            }
-            else if (z == null)
-            {
-                throw new InvalidOperationException("Required property is null (z).");
-            }
-            else if (name == null)
-            {
-                throw new InvalidOperationException("Required property is null (name).");
-            }
-            else
-            {
-                if (name.Length < sbyte.MaxValue)
+                foreach (byte Byte in SubData.BuildBytes())
                 {
-                    throw new InvalidOperationException("Length of name is higher than 127 (max sbyte length).");
+					Data.Add(Byte);
                 }
             }
 
-            List<byte> data = new List<byte>();
-
-            data.Add(0x00);
-            data.Add((byte)roomType);
-            data.Add(0x01);
-            data.Add(BitConverter.GetBytes(x.Value)[0]);
-            data.Add(BitConverter.GetBytes(x.Value)[1]);
-            data.Add(BitConverter.GetBytes(x.Value)[2]);
-            data.Add(BitConverter.GetBytes(x.Value)[3]);
-            data.Add(BitConverter.GetBytes(z.Value)[0]);
-            data.Add(BitConverter.GetBytes(z.Value)[1]);
-            data.Add(BitConverter.GetBytes(z.Value)[2]);
-            data.Add(BitConverter.GetBytes(z.Value)[3]);
-            data.Add(BitConverter.GetBytes(y.Value)[0]);
-            data.Add(BitConverter.GetBytes(y.Value)[1]);
-            data.Add(BitConverter.GetBytes(y.Value)[2]);
-            data.Add(BitConverter.GetBytes(y.Value)[3]);
-            data.Add(0x62);
-            // Temporary. These bytes change with save files.
-            // This might be a record of what pieces have been collected in a stage.
-            data.Add(0x03);
-            data.Add(0xFB);
-            data.Add(0x62);
-            data.Add(0x3E);
-
-            // These bytes don't exist in a save file without pieces.
-            if (pieces == 0)
-            {
-                data.Add(0x05);
-                data.Add(0x02);
-            }
+			return Data;
         }
     }
 }

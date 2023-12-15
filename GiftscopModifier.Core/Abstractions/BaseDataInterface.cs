@@ -8,7 +8,7 @@ namespace GiftscopModifier.Core.Abstractions
 {
     internal interface IBaseDataInterface
     {
-        void fillInData(byte[] data);
+        void fillInData(List<byte> data);
 
         List<byte> rebuildData();
     }

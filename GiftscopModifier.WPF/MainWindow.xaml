@@ -7,15 +7,9 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="1080" Width="1920">
 	<Grid>
-		<TreeView Margin="10,0,10,0"
-				  Width="500"
-				  Height="1050"
-				  HorizontalAlignment="Left"
-				  Name="GiftscopData">
-			<TreeViewItem>
-				
-			</TreeViewItem>
-		</TreeView>
+		<ProgressBar x:Name="FileInteractionProgressBar" HorizontalAlignment="Center" Height="10" Margin="0,1044,0,0" VerticalAlignment="Top" Width="1900" Maximum="2"/>
+		<ComboBox x:Name="FileSelection" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Width="1900" DropDownOpened="FileSelection_Open">
 
+		</ComboBox>
 	</Grid>
 </Window>

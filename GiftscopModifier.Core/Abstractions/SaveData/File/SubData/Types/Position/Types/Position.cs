@@ -4,22 +4,18 @@ using System.Runtime.InteropServices;
 
 namespace GiftscopModifier.Core.Abstractions.SaveData.File.SubData.Types.Position.Types
 {
-	internal record Position : ISubData
+	internal record Position : Interfaces.ISubData
 	{
 		internal static SubDataType SubDataType = SubDataType.POSITION;
 
-		public Position(float x, float y, float z)
-		{
-			X = x;
-			Y = y;
-			Z = z;
-		}
+		public Position()
+		{}
 
-		public float X { get; }
-		public float Y { get; }
-		public float Z { get; }
+		public float X { get; set; }
+		public float Y { get; set; }
+		public float Z { get; set; }
 
-		static ISubData ISubData.BuildSubData(List<byte> bytes)
+		void Interfaces.ISubData.BuildSubData(ref List<byte> bytes)
 		{
 			// Check the data type.
 			if (bytes[0] != (( byte ) SubDataType))
@@ -30,10 +26,12 @@ namespace GiftscopModifier.Core.Abstractions.SaveData.File.SubData.Types.Positio
 			bytes.RemoveAt(0);
 
 			// Object initalization code.
-			return new Position(BitConverter.ToSingle(CollectionsMarshal.AsSpan(bytes.TakeAndRemove(4))), BitConverter.ToSingle(CollectionsMarshal.AsSpan(bytes.TakeAndRemove(4))), BitConverter.ToSingle(CollectionsMarshal.AsSpan(bytes.TakeAndRemove(4))));
+			X = BitConverter.ToSingle(CollectionsMarshal.AsSpan(bytes.TakeAndRemove(4)));
+			Z = BitConverter.ToSingle(CollectionsMarshal.AsSpan(bytes.TakeAndRemove(4)));
+			Y = BitConverter.ToSingle(CollectionsMarshal.AsSpan(bytes.TakeAndRemove(4)));
 		}
 
-		List<byte> ISubData.BuildBytes()
+		List<byte> Interfaces.ISubData.BuildBytes()
 		{
 			List<byte> bytes = [];
 
