@@ -8,7 +8,11 @@ namespace GiftscopModifier.Core.Abstractions.SaveData.File.SubData.Types.Locatio
 {
     public enum RoomType
     {
-		// GiftPlane
+		// On Startup
+		Garalina = 0x00,
+		Title = 0x01,
+
+		// Gift Plane
 		GiftPlane = 0x02,
 
 		// Even Care
@@ -46,8 +50,16 @@ namespace GiftscopModifier.Core.Abstractions.SaveData.File.SubData.Types.Locatio
 		UndergroundChildLibraryRoom = 0x1E,
 		UndergroundPartyRoom = 0x1F,
 		UndergroundGiftBoxRoom = 0x20,
+		
+		// Windmill
+		Windmill = 0x21,
 
-		// Entries 0x21-0x26 cause the save file to appear as an empty file and thus are not included.
+		// House
+		House = 0x22,
+		HouseBathroom = 0x23,
+		CareBedroom = 0x24,
+		MarvinBedroom = 0x25,
+		HouseGarage = 0x26,
 
 		// School
 		SchoolFloor1 = 0x27,
