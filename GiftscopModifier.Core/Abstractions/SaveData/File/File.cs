@@ -33,12 +33,12 @@ namespace GiftscopModifier.Core.Abstractions.SaveData.File
 
 			switch (SubDataTypeEnum)
 			{
-				case SubDataType.ROOM:
+				case SubDataType.Room:
 					SubData[SubDataTypeEnum] = new Room();
 					SubData[SubDataTypeEnum].BuildSubData(ref CurrentDataBytes);
 					break;
 
-				case SubDataType.POSITION:
+				case SubDataType.Position:
 					SubData[SubDataTypeEnum] = new Position();
 					SubData[SubDataTypeEnum].BuildSubData(ref CurrentDataBytes);
 					break;

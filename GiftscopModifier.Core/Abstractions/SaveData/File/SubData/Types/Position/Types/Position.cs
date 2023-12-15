@@ -6,7 +6,7 @@ namespace GiftscopModifier.Core.Abstractions.SaveData.File.SubData.Types.Positio
 {
 	internal record Position : Interfaces.ISubData
 	{
-		internal static SubDataType SubDataType = SubDataType.POSITION;
+		internal static SubDataType SubDataType = SubDataType.Position;
 
 		public Position()
 		{}

@@ -10,7 +10,7 @@ namespace GiftscopModifier.Core.Abstractions.SaveData.File.SubData.Types.Version
 {
 	internal class Version : Interfaces.ISubData
 	{
-		internal static SubDataType SubDataType = SubDataType.VERSION;
+		internal static SubDataType SubDataType = SubDataType.Version;
 
 		public Version()
 		{ }

@@ -8,7 +8,8 @@ namespace GiftscopModifier.Core.Abstractions.SaveData.File.SubData.Enums {
 	internal enum SubDataType
 	{
 		ROOM = 0x00,
-		POSITION = 0x01,
+		Position = 0x01,
 		VERSION = 0x1F,
+		Version = 0x1F,
 	}
 }
