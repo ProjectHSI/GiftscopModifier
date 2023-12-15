@@ -2,6 +2,7 @@
 using GiftscopModifier.Core.Abstractions.SaveData.File.SubData.Interfaces;
 using GiftscopModifier.Core.Abstractions.SaveData.File.SubData.Types.Location.Types;
 using GiftscopModifier.Core.Abstractions.SaveData.File.SubData.Types.Position.Types;
+using GiftscopModifier.Core.Abstractions.SaveData.File.SubData.Types.Version.Types;
 using GiftscopModifier.Core.Enums;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using Version = GiftscopModifier.Core.Abstractions.SaveData.File.SubData.Types.Version.Types.Version;
 
 namespace GiftscopModifier.Core.Abstractions.SaveData.File
 {
@@ -30,6 +32,8 @@ namespace GiftscopModifier.Core.Abstractions.SaveData.File
 
 				return;
 			}
+
+			ISubData? subData = null;
 
 			switch (SubDataTypeEnum)
 			{
