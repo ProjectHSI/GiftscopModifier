@@ -42,6 +42,35 @@ namespace GiftscopModifier.Core.Abstractions.SaveData.File
 					SubData[SubDataTypeEnum] = new Position();
 					SubData[SubDataTypeEnum].BuildSubData(ref CurrentDataBytes);
 					break;
+				case SubDataType.Version:
+					SubData[SubDataTypeEnum] = new Version();
+					break;
+
+				default:
+					Console.WriteLine($"Unknown SubDataType: 0x{SubDataTypeByte:X2}. Please implement this SubDataType, as this data will be discardded upon filling in information.");
+
+					CurrentDataBytes.RemoveAt(0);
+
+					return;
+			}
+
+			if (subData == null)
+			{
+				Console.WriteLine($"Unknown SubDataType: 0x{SubDataTypeByte:X2}. Please implement this SubDataType, as this data will be discardded upon filling in information.");
+
+				CurrentDataBytes.RemoveAt(0);
+
+				return;
+			}
+
+			subData.BuildSubData(ref CurrentDataBytes);
+
+			if (SubDataTypeEnum == SubDataType.Version && (Version) subData != null)
+			{
+				if (((Version) subData).VersionString != "1.2-pre30")
+				{
+					Debug.WriteLine("Version is not 1.2-pre30. Possible incompatibilites.");
+				}
 			}
 		}
 
