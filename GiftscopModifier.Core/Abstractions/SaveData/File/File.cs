@@ -17,8 +17,8 @@ using Version = GiftscopModifier.Core.Abstractions.SaveData.File.SubData.Types.V
 
 namespace GiftscopModifier.Core.Abstractions.SaveData.File
 {
-    internal class File : IBaseDataInterface
-    {
+	internal class File : IBaseDataInterface
+	{
 		private Dictionary<SubDataType, SubData.Interfaces.ISubData> SubData = [];
 
 		private void BuildSubDataForSubDataType(byte SubDataTypeByte, ref List<byte> CurrentDataBytes)
@@ -90,7 +90,7 @@ namespace GiftscopModifier.Core.Abstractions.SaveData.File
 		{}
 
 		void IBaseDataInterface.fillInData(List<byte> Data)
-        {
+		{
 			if (Data.Count == 0)
 			{
 				return;
@@ -100,21 +100,21 @@ namespace GiftscopModifier.Core.Abstractions.SaveData.File
 			{
 				BuildSubDataForSubDataType(Data.First(), ref Data);
 			}
-        }
+		}
 
-        List<byte> IBaseDataInterface.rebuildData()
-        {
+		List<byte> IBaseDataInterface.rebuildData()
+		{
 			List<byte> Data = new();
 
-            foreach (ISubData SubData in SubData.Values)
-            {
-                foreach (byte Byte in SubData.BuildBytes())
-                {
+			foreach (ISubData SubData in SubData.Values)
+			{
+				foreach (byte Byte in SubData.BuildBytes())
+				{
 					Data.Add(Byte);
-                }
-            }
+				}
+			}
 
 			return Data;
-        }
-    }
+		}
+	}
 }
