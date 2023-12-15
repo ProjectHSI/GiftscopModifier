@@ -6,6 +6,7 @@ using GiftscopModifier.Core.Abstractions.SaveData.File.SubData.Types.Version.Typ
 using GiftscopModifier.Core.Enums;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -39,13 +40,18 @@ namespace GiftscopModifier.Core.Abstractions.SaveData.File
 			{
 				case SubDataType.Room:
 					SubData[SubDataTypeEnum] = new Room();
-					SubData[SubDataTypeEnum].BuildSubData(ref CurrentDataBytes);
 					break;
 
 				case SubDataType.Position:
 					SubData[SubDataTypeEnum] = new Position();
 					break;
+
+				case SubDataType.SaveName:
+					SubData[SubDataTypeEnum] = new SaveName();
+					break;
+
 				case SubDataType.Generation:
+					SubData[SubDataTypeEnum] = new Generation();
 					break;
 
 				case SubDataType.Version:
