@@ -9,12 +9,14 @@ namespace GiftscopModifier.Core.Tests
 	[TestClass]
 	public class Initalization
 	{
-		public static GiftscopModifier.Core.Abstractions.SaveData.File.File saveFile = new();
+		//public static GiftscopModifier.Core.Abstractions.SaveData.File.File SaveFile = new();
+		//public static bool DoneInitalization { get; private set; } = false;
 
 		[TestMethod]
 		public void InitSaveFile()
 		{
-			saveFile.fillInData(Properties.Resources.SaveFile.ToList());
+			new Abstractions.SaveData.File.File().fillInData([.. Properties.Resources.StartingSaveFile]);
+			//DoneInitalization = true;
 		}
 	}
 }

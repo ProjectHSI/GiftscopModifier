@@ -24,10 +24,17 @@ namespace GiftscopModifier.Core.Abstractions.SaveData.File.SubData.Types.Version
 			}
 			set
 			{
+				if (value == null)
+				{
+					value = "";
+				}
+
 				if (value.Length > 0xff)
 				{
 					throw new ArgumentOutOfRangeException(nameof(value), "\"value\"'s length must be in the range of 0-255.");
 				}
+
+				_VersionString = value;
 			}
 		}
 

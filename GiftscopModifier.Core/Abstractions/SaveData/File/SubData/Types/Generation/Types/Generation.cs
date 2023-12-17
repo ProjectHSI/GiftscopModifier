@@ -15,7 +15,7 @@ namespace GiftscopModifier.Core.Abstractions.SaveData.File.SubData.Types.Version
 		public Generation()
 		{ }
 
-		private byte _GenerationNumber;
+		private byte _GenerationNumber = 8;
 		public byte GenerationNumber
 		{
 			get
@@ -24,10 +24,17 @@ namespace GiftscopModifier.Core.Abstractions.SaveData.File.SubData.Types.Version
 			}
 			set
 			{
+				if (value == null)
+				{
+					value = 8;
+				}
+
 				if (value > 0xF)
 				{
 					throw new ArgumentOutOfRangeException(nameof(value), "\"value\"'s length must be in the range of 0-15.");
 				}
+
+				_GenerationNumber = value;
 			}
 		}
 

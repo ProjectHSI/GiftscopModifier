@@ -118,7 +118,28 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="SaveFile" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\StartingSaveFiles\file0.sav;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="GenerationModifiedSaveFile" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\SaveFiles\GenerationModifiedSaveFile.sav;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="NameModifiedSaveFile" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\SaveFiles\NameModifiedSaveFile.sav;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="RoomModifiedSaveFile" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\SaveFiles\RoomModifiedSaveFile;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="StartingSaveFile" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\SaveFiles\StartingSaveFile.sav;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="VersionModifiedSaveFile" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\SaveFiles\VersionModifiedSaveFile.sav;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="XModifiedSaveFile" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\SaveFiles\XModifiedSaveFile.sav;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="YModifiedSaveFile" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\SaveFiles\YModifiedSaveFile.sav;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ZModifiedSaveFile" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\SaveFiles\ZModifiedSaveFile.sav;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

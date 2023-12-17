@@ -63,9 +63,79 @@ namespace GiftscopModifier.Core.Tests.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] SaveFile {
+        internal static byte[] GenerationModifiedSaveFile {
             get {
-                object obj = ResourceManager.GetObject("SaveFile", resourceCulture);
+                object obj = ResourceManager.GetObject("GenerationModifiedSaveFile", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] NameModifiedSaveFile {
+            get {
+                object obj = ResourceManager.GetObject("NameModifiedSaveFile", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] RoomModifiedSaveFile {
+            get {
+                object obj = ResourceManager.GetObject("RoomModifiedSaveFile", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] StartingSaveFile {
+            get {
+                object obj = ResourceManager.GetObject("StartingSaveFile", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] VersionModifiedSaveFile {
+            get {
+                object obj = ResourceManager.GetObject("VersionModifiedSaveFile", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] XModifiedSaveFile {
+            get {
+                object obj = ResourceManager.GetObject("XModifiedSaveFile", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] YModifiedSaveFile {
+            get {
+                object obj = ResourceManager.GetObject("YModifiedSaveFile", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] ZModifiedSaveFile {
+            get {
+                object obj = ResourceManager.GetObject("ZModifiedSaveFile", resourceCulture);
                 return ((byte[])(obj));
             }
         }
