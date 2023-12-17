@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace GiftscopModifier.Core.Abstractions.SaveData.File.SubData.Types.Version.Types
 {
-	internal class Version : Interfaces.ISubData
+	public sealed class Version : Interfaces.ISubData
 	{
 		internal static SubDataType SubDataType = SubDataType.Version;
 
 		public Version()
 		{ }
 
-		private string _VersionString;
+		private string _VersionString = "1.2-pre30";
 		public string VersionString
 		{
 			get

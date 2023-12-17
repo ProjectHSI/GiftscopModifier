@@ -4,7 +4,7 @@ using GiftscopModifier.Core.Abstractions.SaveData.File.SubData.Types.Location.En
 
 namespace GiftscopModifier.Core.Abstractions.SaveData.File.SubData.Types.Location.Types
 {
-	internal class Room : Interfaces.ISubData
+	public sealed class Room : Interfaces.ISubData
 	{
 		internal static readonly SubDataType SubDataType = SubDataType.Room;
 

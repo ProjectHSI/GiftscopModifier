@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 
 namespace GiftscopModifier.Core.Abstractions.SaveData.File.SubData.Types.Position.Types
 {
-	internal record Position : Interfaces.ISubData
+	public sealed class Position : Interfaces.ISubData
 	{
 		internal static SubDataType SubDataType = SubDataType.Position;
 

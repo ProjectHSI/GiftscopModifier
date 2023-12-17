@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GiftscopModifier.Core.Abstractions.SaveData.File.SubData.Types.Version.Types
 {
-	internal class Generation : Interfaces.ISubData
+	public sealed class Generation : Interfaces.ISubData
 	{
 		internal static SubDataType SubDataType = Enums.SubDataType.Generation;
 

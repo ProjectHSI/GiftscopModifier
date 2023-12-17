@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace GiftscopModifier.Core.Abstractions.SaveData.File.SubData.Types.Version.Types
 {
-	internal class SaveName : Interfaces.ISubData
+	public sealed class SaveName : Interfaces.ISubData
 	{
 		internal static SubDataType SubDataType = SubDataType.SaveName;
 
 		public SaveName()
 		{ }
 
-		private string _SaveNameString;
+		private string _SaveNameString = "";
 		public string SaveNameString
 		{
 			get
