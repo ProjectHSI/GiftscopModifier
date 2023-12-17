@@ -6,7 +6,7 @@ namespace GiftscopModifier.Core.Abstractions.SaveData.File.SubData.Types.Locatio
 {
 	internal class Room : Interfaces.ISubData
 	{
-		internal static SubDataType SubDataType = SubDataType.Room;
+		internal static readonly SubDataType SubDataType = SubDataType.Room;
 
 		public Room()
 		{}

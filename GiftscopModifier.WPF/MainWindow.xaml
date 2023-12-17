@@ -8,8 +8,29 @@
         Title="MainWindow" Height="1080" Width="1920">
 	<Grid>
 		<ProgressBar x:Name="FileInteractionProgressBar" HorizontalAlignment="Center" Height="10" Margin="10,1044,0,0" VerticalAlignment="Top" Width="1900"/>
-		<ComboBox x:Name="FileSelection" HorizontalAlignment="Left" Margin="15,10,0,0" VerticalAlignment="Top" Width="1895" DropDownOpened="FileSelection_Open">
-
-		</ComboBox>
+		<ComboBox x:Name="FileSelection" HorizontalAlignment="Left" Margin="15,10,0,0" VerticalAlignment="Top" Width="1895" DropDownOpened="FileSelection_Open"/>
+		<Frame Margin="15,37,-15,25">
+		</Frame>
+		<Grid Margin="15,37,10,25">
+			<Expander HorizontalAlignment="Left" Height="100" Header="Room" Margin="10,10,0,0" VerticalAlignment="Top" Width="1885" IsExpanded="True">
+				<Grid/>
+			</Expander>
+			<Expander HorizontalAlignment="Left" Height="120" Header="Position" Margin="10,115,0,0" VerticalAlignment="Top" Width="1885" IsExpanded="True">
+				<Grid Margin="0,0,0,-1">
+					<Grid HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="137" Margin="10,10,0,0">
+						<Label Content="X" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+						<TextBox x:Name="XCoordinate" HorizontalAlignment="Left" Margin="17,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="120"/>
+					</Grid>
+					<Grid HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="137" Margin="10,36,0,0">
+						<Label Content="Z" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+						<TextBox x:Name="ZCoordinate" HorizontalAlignment="Left" Margin="17,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="120"/>
+					</Grid>
+					<Grid HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="137" Margin="10,62,0,0">
+						<Label Content="Y" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+						<TextBox x:Name="YCoordinate" HorizontalAlignment="Left" Margin="17,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="120"/>
+					</Grid>
+				</Grid>
+			</Expander>
+		</Grid>
 	</Grid>
 </Window>

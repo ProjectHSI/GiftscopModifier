@@ -10,7 +10,7 @@ namespace GiftscopModifier.Core.Abstractions.SaveData.File.SubData.Types.Version
 {
 	internal class SaveName : Interfaces.ISubData
 	{
-		internal static SubDataType SubDataType = SubDataType.Version;
+		internal static SubDataType SubDataType = SubDataType.SaveName;
 
 		public SaveName()
 		{ }
@@ -42,8 +42,8 @@ namespace GiftscopModifier.Core.Abstractions.SaveData.File.SubData.Types.Version
 			bytes.RemoveAt(0);
 
 			// Object initalization code.
-			int versionLength = BitConverter.ToUInt16(bytes.TakeAndRemove(1).ToArray());
-			_SaveNameString = Encoding.ASCII.GetString(bytes.TakeAndRemove(versionLength).ToArray());
+			int saveNameLength = bytes.TakeAndRemove(1).ToArray()[0];
+			_SaveNameString = Encoding.ASCII.GetString(bytes.TakeAndRemove(saveNameLength).ToArray());
 		}
 
 		List<byte> Interfaces.ISubData.BuildBytes()

@@ -42,7 +42,7 @@ namespace GiftscopModifier.Core.Abstractions.SaveData.File.SubData.Types.Version
 			bytes.RemoveAt(0);
 
 			// Object initalization code.
-			int versionLength = BitConverter.ToUInt16(bytes.TakeAndRemove(1).ToArray());
+			int versionLength = bytes.TakeAndRemove(1).ToArray()[0];
 			_VersionString = Encoding.ASCII.GetString(bytes.TakeAndRemove(versionLength).ToArray());
 		}
 

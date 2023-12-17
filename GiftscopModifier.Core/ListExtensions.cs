@@ -6,7 +6,7 @@ namespace GiftscopModifier.Core
 	{
 		public static List<T> TakeAndRemove<T>(this List<T> list, int count)
 		{
-			List<T> takenList = ( List<T> ) list.Take(count);
+			List<T> takenList = list.Take(count).ToList();
 
 			list.RemoveRange(0, count);
 

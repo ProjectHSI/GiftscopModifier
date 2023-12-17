@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GiftscopModifier.Core.Abstractions.SaveData.File.SubData.Interfaces
 {
-	internal interface ISubData
+	public interface ISubData
 	{
 		internal static SubDataType SubDataType;
 		internal void BuildSubData(ref List<byte> bytes)

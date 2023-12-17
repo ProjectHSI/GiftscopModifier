@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace GiftscopModifier.Core.Abstractions
 {
-    internal interface IBaseDataInterface
-    {
-        void fillInData(List<byte> data);
+	internal interface IBaseDataInterface
+	{
+		public void fillInData(List<byte> data);
 
-        List<byte> rebuildData();
-    }
+		public List<byte> rebuildData();
+	}
 }

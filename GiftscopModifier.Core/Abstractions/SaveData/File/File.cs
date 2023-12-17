@@ -17,15 +17,15 @@ using Version = GiftscopModifier.Core.Abstractions.SaveData.File.SubData.Types.V
 
 namespace GiftscopModifier.Core.Abstractions.SaveData.File
 {
-	internal class File : IBaseDataInterface
+	public class File : IBaseDataInterface
 	{
-		private Dictionary<SubDataType, SubData.Interfaces.ISubData> SubData = [];
+		public Dictionary<SubDataType, SubData.Interfaces.ISubData> SubData { get; } = [];
 
 		private void BuildSubDataForSubDataType(byte SubDataTypeByte, ref List<byte> CurrentDataBytes)
 		{
 			SubDataType SubDataTypeEnum = (SubDataType) SubDataTypeByte;
 
-			if (!Enum.IsDefined(typeof(SubDataType), SubDataTypeEnum))
+			if (!Enum.IsDefined(( SubDataType ) SubDataTypeByte))
 			{
 				Console.WriteLine($"Unknown SubDataType: 0x{SubDataTypeByte:X2}. Please implement this SubDataType, as this data will be discardded upon filling in information.");
 
@@ -39,23 +39,23 @@ namespace GiftscopModifier.Core.Abstractions.SaveData.File
 			switch (SubDataTypeEnum)
 			{
 				case SubDataType.Room:
-					SubData[SubDataTypeEnum] = new Room();
+					subData = new Room();
 					break;
 
 				case SubDataType.Position:
-					SubData[SubDataTypeEnum] = new Position();
+					subData = new Position();
 					break;
 
 				case SubDataType.SaveName:
-					SubData[SubDataTypeEnum] = new SaveName();
+					subData = new SaveName();
 					break;
 
 				case SubDataType.Generation:
-					SubData[SubDataTypeEnum] = new Generation();
+					subData = new Generation();
 					break;
 
 				case SubDataType.Version:
-					SubData[SubDataTypeEnum] = new Version();
+					subData = new Version();
 					break;
 
 				default:
@@ -65,6 +65,8 @@ namespace GiftscopModifier.Core.Abstractions.SaveData.File
 
 					return;
 			}
+
+			SubData[SubDataTypeEnum] = subData;
 
 			if (subData == null)
 			{
@@ -89,7 +91,7 @@ namespace GiftscopModifier.Core.Abstractions.SaveData.File
 		public File()
 		{}
 
-		void IBaseDataInterface.fillInData(List<byte> Data)
+		public void fillInData(List<byte> Data)
 		{
 			if (Data.Count == 0)
 			{
@@ -102,9 +104,9 @@ namespace GiftscopModifier.Core.Abstractions.SaveData.File
 			}
 		}
 
-		List<byte> IBaseDataInterface.rebuildData()
+		public List<byte> rebuildData()
 		{
-			List<byte> Data = new();
+			List<byte> Data = [];
 
 			foreach (ISubData SubData in SubData.Values)
 			{
