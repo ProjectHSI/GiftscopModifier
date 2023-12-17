@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using System.Drawing;
+using TerminalTrueColor;
 
 namespace GiftscopHexEditingVisualization
 {
@@ -18,206 +19,53 @@ namespace GiftscopHexEditingVisualization
 		VersionLength,
 		Version
 	}
-
-	internal class TerminalTrueColor
-	{
-		public static bool TerminalSupportsTrueColor { get; private set; } = false;
-
-		public enum ColorType
-		{
-			Foreground,
-			Background
-		}
-
-		public static void WriteToTerminal(string text)
-		{
-			WriteToTerminal(text, Color.White, Color.Black, ConsoleColor.White, ConsoleColor.Black);
-		}
-
-		public static void WriteToTerminal(
-			string text,
-			Color preferredColor,
-			ConsoleColor fallbackColor,
-			ColorType colorType)
-		{
-			if (colorType == ColorType.Foreground)
-			{
-				WriteToTerminal(text, preferredColor, Color.Black, fallbackColor, ConsoleColor.Black);
-			}
-			else if (colorType == ColorType.Background)
-			{
-				WriteToTerminal(text, Color.White, preferredColor, ConsoleColor.White, fallbackColor);
-			}
-		}
-
-		public static void WriteToTerminal(
-			string text,
-			Color preferredForegroundColor,
-			Color preferredBackgroundColor,
-			ConsoleColor fallbackForegroundColor,
-			ConsoleColor fallbackBackgroundColor)
-		{
-			if (TerminalSupportsTrueColor)
-			{
-				const string ESCCode = "\x1b";
-				const string Delimiter = ";";
-				const string ForegroundSetCode = "38";
-				const string BackgroundSetCode = "48";
-				const string ResetCode = "m";
-				const string FinalResetString = $"{ESCCode}[0m";
-
-				string foregroundSet =
-					$"{ESCCode}" +
-					$"[" +
-					$"{ForegroundSetCode}" +
-					Delimiter +
-					$"2" +
-					Delimiter +
-					$"{preferredForegroundColor.R}" +
-					Delimiter +
-					$"{preferredForegroundColor.G}" +
-					Delimiter +
-					$"{preferredForegroundColor.B}" +
-					$"{ResetCode}";
-
-				string backgroundSet =
-					$"{ESCCode}" +
-					$"[" +
-					$"{BackgroundSetCode}" +
-					Delimiter +
-					$"2" +
-					Delimiter +
-					$"{preferredBackgroundColor.R}" +
-					Delimiter +
-					$"{preferredBackgroundColor.G}" +
-					Delimiter +
-					$"{preferredBackgroundColor.B}" +
-					$"{ResetCode}";
-
-				Console.Write($"{foregroundSet}{backgroundSet}{text}{FinalResetString}");
-				//Console.Write($"{foregroundSet} {backgroundSet} {text} {FinalResetString}\n".Replace("\x1b", "ESC_"));
-				//Console.Write($"{ESCCode}[{ForegroundSetCode};2;255;100;0m{ESCCode}[{BackgroundSetCode};2;0;155;255m{text}\x1b[0m\n");
-			}
-		}
-
-		public static void WriteLineToTerminal(string text)
-		{
-			WriteLineToTerminal(text, Color.White, Color.Black, ConsoleColor.White, ConsoleColor.Black);
-		}
-
-		public static void WriteLineToTerminal(
-			string text,
-			Color preferredColor,
-			ConsoleColor fallbackColor,
-			ColorType colorType)
-		{
-			if (colorType == ColorType.Foreground)
-			{
-				WriteLineToTerminal(text, preferredColor, Color.Black, fallbackColor, ConsoleColor.Black);
-			}
-			else if (colorType == ColorType.Background)
-			{
-				WriteLineToTerminal(text, Color.White, preferredColor, ConsoleColor.White, fallbackColor);
-			}
-		}
-
-		public static void WriteLineToTerminal(
-			string text,
-			Color preferredForegroundColor,
-			Color preferredBackgroundColor,
-			ConsoleColor fallbackForegroundColor,
-			ConsoleColor fallbackBackgroundColor)
-		{
-			WriteToTerminal(text, preferredForegroundColor, preferredBackgroundColor, fallbackForegroundColor, fallbackBackgroundColor);
-			Console.Write("\n");
-		}
-
-		public static void ColorCheck()
-		{
-			string? COLORTERM = Environment.GetEnvironmentVariable("COLORTERM");
-
-			TerminalSupportsTrueColor = OperatingSystem.IsWindows() || COLORTERM == "24bit" || COLORTERM == "truecolor";
-
-#if TRUE_COLOR_TEST
-			TrueColorTest();
-#endif
-		}
-
-		#region TrueColorTest
-		static void TrueColorTest()
-		{
-			for (int b = 0; b < 256; b++)
-			{
-				for (int g = 0; g < 256; g++)
-				{
-					for (int r = 0; r < 256; r++)
-					{
-						WriteToTerminal("█", Color.FromArgb(r, g, b), Color.Black, ConsoleColor.Red, ConsoleColor.Black);
-					}
-					Console.WriteLine();
-				}
-			}
-
-			for (int r = 0; r < 256; r++)
-			{
-				for (int c = 0; c < 256; c++)
-				{
-					Color color = Color.FromArgb(Math.Clamp((255 - c) * 2, 0, 255), Math.Clamp(c * 2, 0, 255), r);
-
-					WriteToTerminal("█", color, Color.Black, ConsoleColor.Red, ConsoleColor.Black);
-				}
-				Console.WriteLine();
-			}
-		}
-		#endregion
-	}
 	
 	internal record CombinedVisualizationColor
 	{
-		public Color foregroundColor { get; }
-		public Color backgroundColor { get; }
-		public ConsoleColor fallbackForegroundColor { get; }
-		public ConsoleColor fallbackBackgroundColor { get; }
+		public Color ForegroundColor { get; }
+		public Color BackgroundColor { get; }
+		public ConsoleColor FallbackForegroundColor { get; }
+		public ConsoleColor FallbackBackgroundColor { get; }
 
 		internal CombinedVisualizationColor(Color foregroundColor,
 			Color backgroundColor,
 			ConsoleColor fallbackForegroundColor,
 			ConsoleColor fallbackBackgroundColor)
 		{
-			this.foregroundColor = foregroundColor;
-			this.backgroundColor = backgroundColor;
-			this.fallbackForegroundColor = fallbackForegroundColor;
-			this.fallbackBackgroundColor = fallbackBackgroundColor;
+			ForegroundColor = foregroundColor;
+			BackgroundColor = backgroundColor;
+			FallbackForegroundColor = fallbackForegroundColor;
+			FallbackBackgroundColor = fallbackBackgroundColor;
 		}
 	}
 
 	internal record VisualizationSection
 	{
-		public List<byte> bytes { get; }
-		public CombinedVisualizationColor color { get; }
+		public List<byte> Bytes { get; }
+		public CombinedVisualizationColor Color { get; }
 
 		internal VisualizationSection(List<byte> bytes, CombinedVisualizationColor color)
 		{
-			this.bytes = bytes;
-			this.color = color;
+			Bytes = bytes;
+			Color = color;
 		}
 	}
 
 	internal record ByteSection
 	{
 		public byte Byte { get; }
-		public CombinedVisualizationColor color { get; }
+		public CombinedVisualizationColor Color { get; }
 
 		internal ByteSection(byte Byte, CombinedVisualizationColor color)
 		{
 			this.Byte = Byte;
-			this.color = color;
+			this.Color = color;
 		}
 	}
 
 	internal class Visualization
 	{
-		public static readonly Visualization Instance = new Visualization();
+		public static readonly Visualization Instance = new();
 
 		internal static Dictionary<DataType, CombinedVisualizationColor> visColors = new() {
 			{ DataType.Unknown, new(Color.FromArgb(255, 0, 255),
@@ -323,67 +171,69 @@ namespace GiftscopHexEditingVisualization
 	{
 		static void Main(string[] args)
 		{
-			TerminalTrueColor.ColorCheck();
+			TrueColor.ColorCheck();
 
 			int bytesDone = 0;
 
-			List<ByteSection> bytesInLine = null;
+			List<ByteSection>? bytesInLine = null;
 
-			TerminalTrueColor.WriteToTerminal("    00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F",
-				Visualization.offsetCounter.foregroundColor,
-				Visualization.offsetCounter.backgroundColor,
-				Visualization.offsetCounter.fallbackForegroundColor,
-				Visualization.offsetCounter.fallbackBackgroundColor);
+			TrueColor.WriteToTerminal("    00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F",
+				Visualization.offsetCounter.ForegroundColor,
+				Visualization.offsetCounter.BackgroundColor,
+				Visualization.offsetCounter.FallbackForegroundColor,
+				Visualization.offsetCounter.FallbackBackgroundColor);
 
 			foreach (VisualizationSection visualizationSection in Visualization.visualizationSections)
 			{
-				foreach (byte currentByte in visualizationSection.bytes)
+				foreach (byte currentByte in visualizationSection.Bytes)
 				{
 					if (bytesDone % 16 == 0)
 					{
 						if (bytesInLine != null)
 						{
-							TerminalTrueColor.WriteToTerminal("| ",
-								Visualization.offsetCounter.foregroundColor,
-								Visualization.offsetCounter.backgroundColor,
-								Visualization.offsetCounter.fallbackForegroundColor,
-								Visualization.offsetCounter.fallbackBackgroundColor);
+							TrueColor.WriteToTerminal("| ",
+								Visualization.offsetCounter.ForegroundColor,
+								Visualization.offsetCounter.BackgroundColor,
+								Visualization.offsetCounter.FallbackForegroundColor,
+								Visualization.offsetCounter.FallbackBackgroundColor);
 
 							foreach (ByteSection Byte in bytesInLine)
 							{
-								string byteAsString = ".";
+								char byteAsString = System.Text.Encoding.ASCII.GetChars([Byte.Byte])[0];
 
-								if (Byte.Byte >= 0x20 && Byte.Byte <= 0x7E)
+								if (!char.IsAsciiLetter(byteAsString) && !char.IsAsciiDigit(byteAsString))
 								{
-									byteAsString = System.Text.Encoding.ASCII.GetString([Byte.Byte]);
+									byteAsString = '.';
 								}
 
-								TerminalTrueColor.WriteToTerminal(byteAsString,
-									Byte.color.foregroundColor,
-									Byte.color.backgroundColor,
-									Byte.color.fallbackForegroundColor,
-									Byte.color.fallbackBackgroundColor);
+								TrueColor.WriteToTerminal(byteAsString.ToString(),
+									Byte.Color.ForegroundColor,
+									Byte.Color.BackgroundColor,
+									Byte.Color.FallbackForegroundColor,
+									Byte.Color.FallbackBackgroundColor);
 							}
 						}
 
 						Console.WriteLine();
 
-						bytesInLine = new();
+						bytesInLine = [];
 
-						TerminalTrueColor.WriteToTerminal(bytesDone.ToString("X3") + " ",
-							Visualization.offsetCounter.foregroundColor,
-							Visualization.offsetCounter.backgroundColor,
-							Visualization.offsetCounter.fallbackForegroundColor,
-							Visualization.offsetCounter.fallbackBackgroundColor);
+						TrueColor.WriteToTerminal(bytesDone.ToString("X3") + " ",
+							Visualization.offsetCounter.ForegroundColor,
+							Visualization.offsetCounter.BackgroundColor,
+							Visualization.offsetCounter.FallbackForegroundColor,
+							Visualization.offsetCounter.FallbackBackgroundColor);
 					}
 
-					TerminalTrueColor.WriteToTerminal(currentByte.ToString("X2"),
-							visualizationSection.color.foregroundColor,
-							visualizationSection.color.backgroundColor,
-							visualizationSection.color.fallbackForegroundColor,
-							visualizationSection.color.fallbackBackgroundColor);
+					TrueColor.WriteToTerminal(currentByte.ToString("X2"),
+							visualizationSection.Color.ForegroundColor,
+							visualizationSection.Color.BackgroundColor,
+							visualizationSection.Color.FallbackForegroundColor,
+							visualizationSection.Color.FallbackBackgroundColor);
 
-					bytesInLine.Add(new(currentByte, visualizationSection.color));
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
+					bytesInLine.Add(new(currentByte, visualizationSection.Color));
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
 
 					Console.Write(" ");
 
@@ -402,26 +252,27 @@ namespace GiftscopHexEditingVisualization
 
 			if (bytesInLine != null)
 			{
-				TerminalTrueColor.WriteToTerminal("| ",
-					Visualization.offsetCounter.foregroundColor,
-					Visualization.offsetCounter.backgroundColor,
-					Visualization.offsetCounter.fallbackForegroundColor,
-					Visualization.offsetCounter.fallbackBackgroundColor);
+				TrueColor.WriteToTerminal("| ",
+					Visualization.offsetCounter.ForegroundColor,
+					Visualization.offsetCounter.BackgroundColor,
+					Visualization.offsetCounter.FallbackForegroundColor,
+					Visualization.offsetCounter.FallbackBackgroundColor);
 
 				foreach (ByteSection Byte in bytesInLine)
 				{
 					string byteAsString = ".";
+					string potentialByteString = System.Text.Encoding.ASCII.GetString([Byte.Byte]);
 
-					if (Byte.Byte >= 0x20 && Byte.Byte <= 0x7E)
+					if (potentialByteString.Length != 0)
 					{
 						byteAsString = System.Text.Encoding.ASCII.GetString([Byte.Byte]);
 					}
 
-					TerminalTrueColor.WriteToTerminal(byteAsString,
-						Byte.color.foregroundColor,
-						Byte.color.backgroundColor,
-						Byte.color.fallbackForegroundColor,
-						Byte.color.fallbackBackgroundColor);
+					TrueColor.WriteToTerminal(byteAsString,
+						Byte.Color.ForegroundColor,
+						Byte.Color.BackgroundColor,
+						Byte.Color.FallbackForegroundColor,
+						Byte.Color.FallbackBackgroundColor);
 				}
 			}
 
@@ -432,17 +283,17 @@ namespace GiftscopHexEditingVisualization
             {
 				CombinedVisualizationColor color = Visualization.visColors[key];
 
-				TerminalTrueColor.WriteToTerminal("█ ",
-					color.foregroundColor,
-					color.backgroundColor,
-					color.fallbackForegroundColor,
-					color.fallbackBackgroundColor);
+				TrueColor.WriteToTerminal("█ ",
+					color.ForegroundColor,
+					color.BackgroundColor,
+					color.FallbackForegroundColor,
+					color.FallbackBackgroundColor);
 
-				TerminalTrueColor.WriteLineToTerminal(" | " + Visualization.DataTypeNames[key],
-					Visualization.offsetCounter.foregroundColor,
-					Visualization.offsetCounter.backgroundColor,
-					Visualization.offsetCounter.fallbackForegroundColor,
-					Visualization.offsetCounter.fallbackBackgroundColor);
+				TrueColor.WriteLineToTerminal(" | " + Visualization.DataTypeNames[key],
+					Visualization.offsetCounter.ForegroundColor,
+					Visualization.offsetCounter.BackgroundColor,
+					Visualization.offsetCounter.FallbackForegroundColor,
+					Visualization.offsetCounter.FallbackBackgroundColor);
 			}
         }
 	}
