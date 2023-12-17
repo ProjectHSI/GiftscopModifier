@@ -9,24 +9,24 @@ namespace GiftscopModifier.Core.Abstractions.SaveData.File.SubData.Types.Locatio
     public enum RoomType
     {
 		// On Startup
-		Garalina = 0x00,
-		Title = 0x01,
+		garalina = 0x00,
+		title = 0x01,
 
 		// Gift Plane
-		GiftPlane = 0x02,
+		gift_plane = 0x02,
 
 		// Even Care
-		EvenCareLobby = 0x03,
-		EvenCareHallway = 0x04,
-		EvenCareAmber = 0x05,
-		EvenCareRoneth = 0x06,
-		EvenCarePen = 0x07,
-		EvenCareCorner = 0x08,
-		EvenCareRainyRandice = 0x09,
-		EvenCareNewMakerPlaneEntrance = 0x0A, // Only present in Odd Care.
+		level1_room1 = 0x03, // EvenCareLobby
+		level1_room2 = 0x04, // EvenCareHallway
+		level1_room3 = 0x05, // EvenCareAmber
+		level1_room4 = 0x06, // EvenCareRoneth
+		level1_room5 = 0x07, // EvenCarePen
+		level1_room6 = 0x08, // EvenCareCirber
+		level1_room7 = 0x09, // EvenCareRainyRandice
+		level1_room8 = 0x0A, // Only present in Odd Care. // EvenCareNewMakerPlaneEntrance
 
 		// Newmaker Plane
-		NewMakerPlane = 0x0B,
+		newmaker_plane = 0x0B,
 
 		// Underground
 		UndergroundEntrance = 0x0C,
